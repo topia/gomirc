@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"github.com/mattn/go-mobileagent"
 	"github.com/mattn/go-session-manager"
-	"github.com/thoj/go-ircevent"
+	"github.com/topia/go-ircevent"
 	"html/template"
 	"log"
 	"net"
@@ -207,7 +207,7 @@ func main() {
 
 	for _, elem := range config["irc"].([]interface{}) {
 		cfg := elem.(map[string]interface{})
-		c := irc.IRC(cfg["nick"].(string), cfg["user"].(string))
+		c := irc.IRCWithRealName(cfg["nick"].(string), cfg["user"].(string), cfg["realname"].(string))
 		if network, ok := networks[cfg["name"].(string)]; ok {
 			network.conn = c
 			network.config = cfg
